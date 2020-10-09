@@ -1,0 +1,26 @@
+{
+  "name": "lincoln",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "bin": "lincoln",
+  "scripts": {
+    "test": "mocha",
+    "types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
+  },
+  "keywords": [],
+  "author": "Binyamin Aron Green (https://binyam.in/)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3",
+    "serve-handler": "^6.1.3"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "draftlog": "^1.0.12",
+    "jsdom": "^16.4.0",
+    "xml2js": "^0.4.23"
+  }
+}
