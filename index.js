@@ -2,6 +2,18 @@ const url = require("url");
 const lib = require("./lib");
 require('draftlog').into(console)
 
+/**
+ * @typedef broken_link
+ * @property {String} url link which broke
+ * @property {String} src page which contained the broken link
+ * @property {Number} response_code HTTP code (1xx, 4xx, 5xx) or -1
+ * @property {String} msg eg. Not found
+ */
+/**
+ * Check a url for broken links
+ * @param {String} srcUrl URL to check
+ * @returns {{total: Number, broken: broken_link[]}}
+ */
 async function run(srcUrl) {
     if(!srcUrl) throw new Error("URL not provided!")
 

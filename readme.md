@@ -1,6 +1,8 @@
 # Lincoln
 > 🎩 Test for broken links
 
+![Test](https://github.com/binyamin/lincoln/workflows/Test/badge.svg)
+
 **Roadmap**
 - CLI usage
 - check all html files in a local directory
