@@ -23,11 +23,11 @@ function prefixRelativeUrls(srcUrl, baseUrl) {
 
 /**
  *
- * @param {String} baseurl
+ * @param {String} baseUrl
  */
-async function getPages(baseurl) {
+async function getPages(baseUrl) {
     try {
-        const res = await axios.get(baseurl);
+        const res = await axios.get(baseUrl);
 
         const parsedXml = await parseStringPromise(res.data);
         const pages = parsedXml.urlset.url.map(e => e.loc[0]);

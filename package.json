@@ -4,7 +4,9 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "bin": "lincoln",
+  "bin": {
+    "lincoln": "cli.js"
+  },
   "scripts": {
     "test": "mocha",
     "types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
@@ -21,6 +23,7 @@
     "axios": "^0.20.0",
     "draftlog": "^1.0.12",
     "jsdom": "^16.4.0",
+    "minimist": "^1.2.5",
     "xml2js": "^0.4.23"
   }
 }

@@ -14,6 +14,6 @@ export function checkStatus(srcUrl: string): Promise<{
 export function crawlPage(referenceUrl: string): Promise<any[]>;
 /**
  *
- * @param {String} baseurl
+ * @param {String} baseUrl
  */
-export function getPages(baseurl: string): Promise<any>;
+export function getPages(baseUrl: string): Promise<any>;

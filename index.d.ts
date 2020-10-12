@@ -9,12 +9,12 @@ export = run;
 /**
  * Check a url for broken links
  * @param {String} srcUrl URL to check
- * @returns {{total: Number, broken: broken_link[]}}
+ * @returns {Promise<{ total: Number, broken: broken_link[] }>}
  */
-declare function run(srcUrl: string): {
+declare function run(srcUrl: string): Promise<{
     total: number;
     broken: broken_link[];
-};
+}>;
 declare namespace run {
     export { broken_link };
 }

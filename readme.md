@@ -4,9 +4,9 @@
 ![Test](https://github.com/binyamin/lincoln/workflows/Test/badge.svg)
 
 **Roadmap**
-- CLI usage
 - check all html files in a local directory
 - take in an array of pages to check
+- `--quiet` flag to suppress output while checking
 
 ## Usage
 ### Library
@@ -41,7 +41,13 @@ lincoln("https://examp.le")
 // => Site doesn't exist, so we get an error
 ```
 ### CLI
-_Not yet_
+```console
+lincoln https://binyam.in
+```
+
+**Flags**
+- *-h, --help* - Prints usage information
+- *-v, --version* - prints version
 
 ## Contribute
 This is mainly a personal project, so I don't expect any contributions. That said, I'm open to all suggestions and/or contributions.
