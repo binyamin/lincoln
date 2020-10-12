@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "draftlog": "^1.0.12",
     "jsdom": "^16.4.0",
     "minimist": "^1.2.5",
     "xml2js": "^0.4.23"

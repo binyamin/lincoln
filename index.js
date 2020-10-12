@@ -1,6 +1,5 @@
 const url = require("url");
 const lib = require("./lib");
-require('draftlog').into(console)
 
 function prefixUrl(baseUrl) {
     if((/^https?:\/\//).test(baseUrl) === false)
@@ -38,8 +37,6 @@ async function run(srcUrl) {
 
 
         for(const p of pages) {
-            let draft = console.draft();
-            draft(`- ${p}`)
 
             let pageBroken = [];
 
@@ -48,7 +45,6 @@ async function run(srcUrl) {
 
             for(let i = 0; i < links.length; i++) {
                 const l = links[i];
-                draft(`- ${p} ${".".repeat(i+1)}`);
 
                 const response = await lib.checkStatus(l);
 
@@ -62,13 +58,13 @@ async function run(srcUrl) {
                 }
             }
 
-            draft(`- ${p} (${pageBroken.length}/${links.length})`)
+            console.log(`${p} (${pageBroken.length}/${links.length})`)
 
             broken = broken.concat(pageBroken);
             total += links.length;
 
             for(const b of pageBroken) {
-                console.log(`  - ${b.url} (${b.response_code})`)
+                console.log(`- ${b.url} (${b.response_code})`)
             }
         }
 

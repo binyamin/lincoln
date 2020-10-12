@@ -12,7 +12,9 @@ if (argv["v"] || argv["version"] ) {
 } else {
     lincoln(argv._[0])
         .then(res => {
-            if(res.broken.length > 0) throw "Broken links found!"
+            if(res.broken.length > 0) {
+                throw "Broken links found!"
+            }
         })
         .catch(e => {
             console.error(new Error(e));
