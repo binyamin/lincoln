@@ -1,17 +1,26 @@
 {
-  "name": "lincoln",
+  "name": "@binyamin/lincoln",
   "version": "1.0.0",
-  "private": true,
-  "description": "",
+  "description": "Test for broken links. CLI + API.",
   "main": "index.js",
   "bin": {
     "lincoln": "cli.js"
   },
+  "files": [
+    "lib.js",
+    "*.ts"
+  ],
   "scripts": {
     "test": "mocha",
     "types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
   },
-  "keywords": [],
+  "keywords": [
+    "link",
+    "broken",
+    "dead",
+    "checker",
+    "url"
+  ],
   "author": "Binyamin Aron Green (https://binyam.in/)",
   "license": "MIT",
   "devDependencies": {
@@ -25,5 +34,16 @@
     "jsdom": "^16.4.0",
     "minimist": "^1.2.5",
     "xml2js": "^0.4.23"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binyamin/lincoln.git"
+  },
+  "bugs": {
+    "url": "https://github.com/binyamin/lincoln/issues"
+  },
+  "homepage": "https://github.com/binyamin/lincoln#readme"
 }

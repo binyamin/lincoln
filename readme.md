@@ -1,5 +1,5 @@
 # Lincoln
-> 🎩 Test for broken links
+> 🎩 Test for broken links. CLI + API.
 
 ![Test](https://github.com/binyamin/lincoln/workflows/Test/badge.svg)
 
@@ -9,10 +9,10 @@
 - `--quiet` flag to suppress output while checking
 
 ## Usage
-### Library
+### API
 **Basic Example**
 ```js
-const lincoln = require("lincoln");
+const lincoln = require("@binyamin/lincoln");
 
 lincoln("https://binyam.in")
     .then(results => {
@@ -40,9 +40,10 @@ lincoln("https://no-sitem.app")
 lincoln("https://examp.le")
 // => Site doesn't exist, so we get an error
 ```
+
 ### CLI
 ```console
-lincoln https://binyam.in
+$ npx lincoln https://binyam.in
 ```
 
 **Flags**
