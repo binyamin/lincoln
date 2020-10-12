@@ -12,7 +12,8 @@ const ignoredProtocols = [
     "news:",
     "tel:",
     "ftp:",
-    "#"
+    "#",
+    "about:"
 ];
 
 function prefixRelativeUrls(srcUrl, baseUrl) {
