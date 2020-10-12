@@ -7,6 +7,7 @@
 - check all html files in a local directory
 - take in an array of pages to check
 - `--quiet` flag to suppress output while checking
+- `--allow=<10>` option (don't throw error if broken links are less than given number)
 
 ## Usage
 ### API
