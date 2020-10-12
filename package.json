@@ -1,6 +1,6 @@
 {
   "name": "@binyamin/lincoln",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Test for broken links. CLI + API.",
   "main": "index.js",
   "bin": {
