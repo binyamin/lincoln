@@ -16,6 +16,12 @@ const ignoredProtocols = [
     "about:"
 ];
 
+function prefixUrl(baseUrl) {
+    if((/^https?:\/\//).test(baseUrl) === false)
+        baseUrl = "https://" + baseUrl;
+    return baseUrl;
+}
+
 function prefixRelativeUrls(srcUrl, baseUrl) {
     if(srcUrl.startsWith("/"))
         srcUrl = url.resolve(baseUrl, srcUrl);
@@ -25,11 +31,11 @@ function prefixRelativeUrls(srcUrl, baseUrl) {
 /**
  *
  * @param {String} baseUrl
+ * @returns {Promise<string[]>}
  */
 async function getPages(baseUrl) {
     try {
         const res = await axios.get(baseUrl);
-
         const parsedXml = await parseStringPromise(res.data);
         const pages = parsedXml.urlset.url.map(e => e.loc[0]);
 
@@ -44,6 +50,7 @@ async function getPages(baseUrl) {
 /**
  *
  * @param {String} referenceUrl
+ * @returns {Promise<string[]>}
  */
 async function crawlPage(referenceUrl) {
     const {data: html} = await axios.get(referenceUrl);
@@ -80,8 +87,62 @@ async function checkStatus(srcUrl) {
     }
 }
 
+/**
+ *
+ * @param {string} srcUrl
+ */
+async function getPageList(srcUrl) {
+    srcUrl = prefixUrl(srcUrl);
+
+    let pages;
+
+    try {
+        pages = await getPages(url.resolve(srcUrl, "sitemap.xml"))
+    } catch (error) {
+        throw error;
+    }
+
+    if(!pages.length) {
+        pages = [ srcUrl ];
+    }
+
+    return pages;
+}
+
+/**
+ *
+ * @param {string} page
+ */
+async function checkPageLinks(page) {
+    try {
+        let pageBroken = [];
+
+        const links = await crawlPage(page);
+
+        for(let i = 0; i < links.length; i++) {
+            const l = links[i];
+
+            const response = await checkStatus(l);
+
+            if(response.ok === false) {
+                pageBroken.push({
+                    url: l,
+                    src: url.parse(page).pathname,
+                    response_code: response.code,
+                    msg: response.msg
+                })
+            }
+        }
+
+        return {
+            broken: pageBroken,
+            total: links.length
+        }
+    } catch (error) {
+        throw new Error(error);
+    }
+}
 module.exports = {
-    checkStatus,
-    crawlPage,
-    getPages
+    checkPageLinks,
+    getPageList
 }

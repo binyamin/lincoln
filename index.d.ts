@@ -1,6 +1,6 @@
-export = run;
+export = lincoln;
 /**
- * @typedef broken_link
+ * @typedef BrokenLink
  * @property {String} url link which broke
  * @property {String} src page which contained the broken link
  * @property {Number} response_code HTTP code (1xx, 4xx, 5xx) or -1
@@ -9,16 +9,16 @@ export = run;
 /**
  * Check a url for broken links
  * @param {String} srcUrl URL to check
- * @returns {Promise<{ total: Number, broken: broken_link[] }>}
+ * @returns {Promise<{total: number, broken: BrokenLink[]}>}
  */
-declare function run(srcUrl: string): Promise<{
+declare function lincoln(srcUrl: string): Promise<{
     total: number;
-    broken: broken_link[];
+    broken: BrokenLink[];
 }>;
-declare namespace run {
-    export { broken_link };
+declare namespace lincoln {
+    export { BrokenLink };
 }
-type broken_link = {
+type BrokenLink = {
     /**
      * link which broke
      */

@@ -1,19 +1,18 @@
 /**
  *
- * @param {String} srcUrl
+ * @param {string} page
  */
-export function checkStatus(srcUrl: string): Promise<{
-    code: any;
-    msg: any;
-    ok: boolean;
+export function checkPageLinks(page: string): Promise<{
+    broken: {
+        url: string;
+        src: any;
+        response_code: any;
+        msg: any;
+    }[];
+    total: number;
 }>;
 /**
  *
- * @param {String} referenceUrl
+ * @param {string} srcUrl
  */
-export function crawlPage(referenceUrl: string): Promise<any[]>;
-/**
- *
- * @param {String} baseUrl
- */
-export function getPages(baseUrl: string): Promise<any>;
+export function getPageList(srcUrl: string): Promise<string[]>;
