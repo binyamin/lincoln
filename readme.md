@@ -6,6 +6,7 @@
 **Roadmap**
 - check all html files in a local directory
 - take in an array of pages to check
+- unit tests on `/lib`
 
 ## Usage
 ### API
