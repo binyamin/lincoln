@@ -37,7 +37,7 @@ async function getPages(baseUrl) {
 
     } catch (error) {
         if(error.response && error.response.status === 404) return [];
-        throw error;
+        throw new Error(error.message);
     }
 }
 

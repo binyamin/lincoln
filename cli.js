@@ -13,11 +13,16 @@ if (argv["v"] || argv["version"] ) {
     lincoln(argv._[0])
         .then(res => {
             if(res.broken.length > 0) {
-                throw "Broken links found!"
+
+                res.broken.forEach(l => {
+                    console.log(`- [${l.response_code}] ${l.url} (${l.src})`);
+                })
+
+                throw new Error(`${res.broken.length} broken out of ${res.total}!`);
             }
         })
         .catch(e => {
-            console.error(new Error(e));
+            console.error(e);
             process.exit(1);
         })
 }

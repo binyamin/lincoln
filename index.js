@@ -1,5 +1,6 @@
 const url = require("url");
 const lib = require("./lib");
+const ora = require("ora");
 
 function prefixUrl(baseUrl) {
     if((/^https?:\/\//).test(baseUrl) === false)
@@ -20,28 +21,35 @@ function prefixUrl(baseUrl) {
  * @returns {Promise<{ total: Number, broken: broken_link[] }>}
  */
 async function run(srcUrl) {
+    if(!srcUrl) throw "URL not provided!"
+    srcUrl = prefixUrl(srcUrl);
+
+    let broken = [],
+    total = 0,
+    pages = [];
+
     try {
-        if(!srcUrl) throw "URL not provided!"
-        srcUrl = prefixUrl(srcUrl);
-
-        let broken = [],
-        total = 0,
-        pages = [];
-
         pages = await lib.getPages(url.resolve(srcUrl, "sitemap.xml"))
+    } catch (error) {
+        throw error;
+    }
 
-        if(pages.length === 0) {
-            pages = [ srcUrl ];
-        }
-        console.log(`Checking ${pages.length} page(s)`);
+    if(pages.length === 0) {
+        pages = [ srcUrl ];
+    }
 
+    console.log(`Checking ${pages.length} page(s) on ${srcUrl}`);
+    const spinner = ora().start();
 
-        for(const p of pages) {
+    for(const p of pages) {
+        let pageBroken = [];
 
-            let pageBroken = [];
+        // Set spinner
+        spinner.text = url.parse(p).pathname;
+        spinner.color = ["cyan", "magenta", "green", "yellow"][pages.findIndex(i => i === p) % 4];
 
+        try {
             const links = await lib.crawlPage(p);
-
 
             for(let i = 0; i < links.length; i++) {
                 const l = links[i];
@@ -51,28 +59,29 @@ async function run(srcUrl) {
                 if(response.ok === false) {
                     pageBroken.push({
                         url: l,
-                        src: p,
+                        src: url.parse(p).pathname,
                         response_code: response.code,
                         msg: response.msg
                     })
                 }
             }
 
-            console.log(`${p} (${pageBroken.length}/${links.length})`)
-
             broken = broken.concat(pageBroken);
             total += links.length;
-
-            for(const b of pageBroken) {
-                console.log(`- ${b.url} (${b.response_code})`)
-            }
+        } catch (error) {
+            throw new Error(error);
         }
-
-        console.log(`${broken.length} broken out of ${total}`);
-        return { total, broken }
-    } catch (error) {
-        throw error;
     }
+
+    spinner.text = "All done!";
+
+    if(broken.length > 0) {
+        spinner.fail();
+    } else {
+        spinner.succeed();
+    }
+
+    return { total, broken }
 }
 
 module.exports = run;
