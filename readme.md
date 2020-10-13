@@ -43,7 +43,7 @@ lincoln("https://examp.le")
 
 ### CLI
 ```console
-$ npx lincoln https://binyam.in
+$ npx @binyamin/lincoln https://binyam.in
 ```
 
 **Flags**
