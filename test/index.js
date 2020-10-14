@@ -2,7 +2,7 @@ const { expect } = require("chai");
 
 const lincoln = require("..");
 
-const serve = require("../serve");
+const serve = require("../lib/serve");
 const srvr = new serve("./fixtures");
 
 describe("lincoln - test for broken links", () => {

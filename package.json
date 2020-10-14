@@ -7,11 +7,12 @@
     "lincoln": "cli.js"
   },
   "files": [
-    "lib.js",
+    "lib/",
     "*.ts"
   ],
   "scripts": {
-    "test": "mocha",
+    "test": "mocha test/**/*.js",
+    "test:unit": "mocha test/**/*.js -g #unit",
     "types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
   },
   "keywords": [
