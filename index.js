@@ -14,7 +14,7 @@ const lib = require("./lib");
  * @returns {Promise<{total: number, broken: BrokenLink[]}>}
  */
 async function lincoln(srcUrl) {
-    if(!srcUrl) throw "URL not provided!";
+    if(!srcUrl) throw new Error("URL not provided!");
 
     let broken = [],
     total = 0,

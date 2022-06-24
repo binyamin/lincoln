@@ -1,3 +1,4 @@
+const assert = require("node:assert");
 const { expect } = require("chai");
 
 const lincoln = require("..");
@@ -17,8 +18,10 @@ describe("lincoln - test for broken links", () => {
         done()
     })
 
-    it.skip("should throw error, when param url is missing", () => {
-        expect(lincoln).to.throw();
+    it("should throw error, when param url is missing", async () => {
+        await assert.rejects(lincoln(), {
+            message: 'URL not provided!'
+        })
     });
     it("should be empty, when no links are present", async () => {
         const out = await lincoln("http://localhost:3000/none-present")
