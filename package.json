@@ -1,50 +1,50 @@
 {
-  "name": "@binyamin/lincoln",
-  "version": "1.1.0",
-  "description": "Test for broken links. CLI + API.",
-  "main": "index.js",
-  "bin": {
-    "lincoln": "cli.js"
-  },
-  "files": [
-    "lib/",
-    "*.ts"
-  ],
-  "scripts": {
-    "test": "mocha --recursive test/",
-    "test:unit": "mocha --recursive test/ -f=#unit",
-    "types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
-  },
-  "keywords": [
-    "link",
-    "broken",
-    "dead",
-    "checker",
-    "url"
-  ],
-  "author": "Binyamin Aron Green (https://binyam.in/)",
-  "license": "MIT",
-  "devDependencies": {
-    "chai": "^4.3.7",
-    "mocha": "^10.2.0",
-    "serve-handler": "^6.1.5"
-  },
-  "dependencies": {
-    "axios": "^1.3.5",
-    "jsdom": "^21.1.1",
-    "minimist": "^1.2.8",
-    "ora": "^5.4.1",
-    "xml2js": "^0.5.0"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/binyamin/lincoln.git"
-  },
-  "bugs": {
-    "url": "https://github.com/binyamin/lincoln/issues"
-  },
-  "homepage": "https://github.com/binyamin/lincoln#readme"
+	"name": "@binyamin/lincoln",
+	"version": "1.1.0",
+	"description": "Test for broken links. CLI + API.",
+	"main": "index.js",
+	"bin": {
+		"lincoln": "cli.js"
+	},
+	"files": [
+		"lib/",
+		"*.ts"
+	],
+	"scripts": {
+		"test": "mocha --recursive test/",
+		"test:unit": "mocha --recursive test/ -f=#unit",
+		"types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
+	},
+	"keywords": [
+		"link",
+		"broken",
+		"dead",
+		"checker",
+		"url"
+	],
+	"author": "Binyamin Aron Green (https://binyam.in/)",
+	"license": "MIT",
+	"devDependencies": {
+		"chai": "^4.3.7",
+		"mocha": "^10.2.0",
+		"serve-handler": "^6.1.5"
+	},
+	"dependencies": {
+		"axios": "^1.3.5",
+		"jsdom": "^21.1.1",
+		"minimist": "^1.2.8",
+		"ora": "^5.4.1",
+		"xml2js": "^0.5.0"
+	},
+	"directories": {
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/binyamin/lincoln.git"
+	},
+	"bugs": {
+		"url": "https://github.com/binyamin/lincoln/issues"
+	},
+	"homepage": "https://github.com/binyamin/lincoln#readme"
 }

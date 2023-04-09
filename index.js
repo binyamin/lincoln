@@ -1,4 +1,4 @@
-const lib = require("./lib");
+const lib = require('./lib');
 
 /**
  * @typedef BrokenLink
@@ -14,23 +14,23 @@ const lib = require("./lib");
  * @returns {Promise<{total: number, broken: BrokenLink[]}>}
  */
 async function lincoln(srcUrl) {
-    if(!srcUrl) throw new Error("URL not provided!");
+	if (!srcUrl) throw new Error('URL not provided!');
 
-    let broken = [],
-    total = 0,
-    pages = await lib.getPageList(srcUrl);
+	let broken = [],
+		total = 0,
+		pages = await lib.getPageList(srcUrl);
 
-    try {
-        for(const p of pages) {
-            const pageData = await lib.checkPageLinks(p);
-            total += pageData.total;
-            broken = broken.concat(pageData.broken);
-        }
-    } catch (error) {
-        throw error;
-    }
+	try {
+		for (const p of pages) {
+			const pageData = await lib.checkPageLinks(p);
+			total += pageData.total;
+			broken = broken.concat(pageData.broken);
+		}
+	} catch (error) {
+		throw error;
+	}
 
-    return { total, broken }
+	return { total, broken }
 }
 
 module.exports = lincoln;
