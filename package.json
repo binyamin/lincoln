@@ -6,6 +6,9 @@
 	"bin": {
 		"lincoln": "cli.js"
 	},
+	"engines": {
+		"node": ">=16"
+	},
 	"files": [
 		"lib/",
 		"*.ts"
