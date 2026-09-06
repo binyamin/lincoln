@@ -30,7 +30,7 @@ async function lincoln(srcUrl) {
 		throw error;
 	}
 
-	return { total, broken }
+	return { total, broken };
 }
 
-export default lincoln
+export default lincoln;

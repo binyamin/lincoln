@@ -56,12 +56,15 @@ $ npx @binyamin/lincoln https://binyam.in
 
 - _-h, --help_ - Prints usage information
 - _-v, --version_ - prints version
-- _-a, --allow <n>_ - Allow total broken links less than the given number (Default: 0)
+- _-a, --allow <n>_ - Allow total broken links less than the given number
+  (Default: 0)
 
 ## Contribute
 
-This is mainly a personal project, so I don't expect any contributions. That said, I'm open to all suggestions and/or contributions.
+This is mainly a personal project, so I don't expect any contributions. That
+said, I'm open to all suggestions and/or contributions.
 
 # Legal
 
-This project is under the [MIT](https://github.com/binyamin/lincoln/tree/master/LICENSE) license.
+This project is under the
+[MIT](https://github.com/binyamin/lincoln/tree/master/LICENSE) license.

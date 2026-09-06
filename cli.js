@@ -20,8 +20,8 @@ const args = parseArgs({
 		allow: {
 			type: 'string',
 			short: 'a',
-		}
-	}
+		},
+	},
 });
 
 async function run(srcUrl, limit) {
@@ -36,7 +36,9 @@ async function run(srcUrl, limit) {
 		for (const p of pages) {
 			// Set spinner
 			spinner.text = new URL(p).pathname;
-			spinner.color = ['cyan', 'magenta', 'green', 'yellow'][pages.findIndex(i => i === p) % 4];
+			spinner.color = ['cyan', 'magenta', 'green', 'yellow'][
+				pages.findIndex(i => i === p) % 4
+			];
 
 			const pageData = await lib.checkPageLinks(p);
 			total += pageData.total;
@@ -50,14 +52,14 @@ async function run(srcUrl, limit) {
 		} else {
 			spinner.succeed();
 		}
-		return { broken, total }
+		return { broken, total };
 	} catch (error) {
 		throw error;
 	}
 }
 
 if (args.values.version) {
-	console.log(`v${pkg.version} (${pkg.license})`)
+	console.log(`v${pkg.version} (${pkg.license})`);
 } else if (args.values.help || args.positionals.length === 0) {
 	console.log(`Usage: lincoln <url> - Checks the given url for broken links
     -a,--allow=<n> - Pass with under n broken links`);
@@ -68,18 +70,17 @@ if (args.values.version) {
 	run(args.positionals[0], lim)
 		.then(res => {
 			if (res.broken.length > lim) {
-
 				res.broken.forEach(l => {
 					console.log(`- [${l.response_code}] ${l.url} (${l.src})`);
-				})
+				});
 
 				throw new Error(`${res.broken.length} of ${res.total} links broken`);
 			} else {
-				console.log(`${res.broken.length} of ${res.total} links broken`)
+				console.log(`${res.broken.length} of ${res.total} links broken`);
 			}
 		})
 		.catch(e => {
 			console.error(e);
 			process.exit(1);
-		})
+		});
 }
