@@ -1,12 +1,28 @@
 #! /usr/bin/env node
 
-import minimist from 'minimist';
+import { parseArgs } from 'node:util';
 import ora from 'ora';
 
 import * as lib from './lib/index.js';
 import pkg from './package.json' with { type: 'json' };
 
-const argv = minimist(process.argv.slice(2));
+const args = parseArgs({
+	allowPositionals: true,
+	options: {
+		version: {
+			type: 'boolean',
+			short: 'v',
+		},
+		help: {
+			type: 'boolean',
+			short: 'h',
+		},
+		allow: {
+			type: 'string',
+			short: 'a',
+		}
+	}
+});
 
 async function run(srcUrl, limit) {
 	try {
@@ -40,23 +56,16 @@ async function run(srcUrl, limit) {
 	}
 }
 
-if (argv['v'] || argv['version']) {
+if (args.values.version) {
 	console.log(`v${pkg.version} (${pkg.license})`)
-} else if (argv['h'] || argv['help'] || !argv._[0]) {
+} else if (args.values.help || args.positionals.length === 0) {
 	console.log(`Usage: lincoln <url> - Checks the given url for broken links
     -a,--allow=<n> - Pass with under n broken links`);
 } else {
-	let lim = 0;
+	// TODO: validate that "-a, --allow" is an integer
+	const lim = parseInt(args.values.allow ?? '0') || 0;
 
-	if (typeof argv['allow'] === 'number') {
-		lim = argv['allow'];
-	}
-
-	if (typeof argv['a'] === 'number') {
-		lim = argv['a'];
-	}
-
-	run(argv._[0], lim)
+	run(args.positionals[0], lim)
 		.then(res => {
 			if (res.broken.length > lim) {
 

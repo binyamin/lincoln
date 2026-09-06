@@ -36,7 +36,6 @@
 	"dependencies": {
 		"@types/node": "^22.20.1",
 		"jsdom": "^30.0.1",
-		"minimist": "^1.2.8",
 		"ora": "^9.4.1",
 		"xml2js": "^0.6.2"
 	},
