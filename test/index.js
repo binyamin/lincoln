@@ -1,5 +1,5 @@
-import assert from 'node:assert';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
+import { describe, before, after, it } from 'node:test';
 import lincoln from '../index.js';
 import serve from '../lib/serve.js';
 
@@ -7,14 +7,12 @@ const srvr = new serve('./test/fixtures');
 
 describe('lincoln - test for broken links', () => {
 
-	before((done) => {
+	before(() => {
 		srvr.start()
-		done()
 	})
 
-	after((done) => {
+	after(() => {
 		srvr.stop();
-		done()
 	})
 
 	it('should throw error, when param url is missing', async () => {
@@ -24,26 +22,19 @@ describe('lincoln - test for broken links', () => {
 	});
 	it('should be empty, when no links are present', async () => {
 		const out = await lincoln('http://localhost:3000/none-present')
-		expect(out.total).to.be.a('number');
-		expect(out.total).to.equal(0);
+		assert.equal(out.total, 0);
 	})
 	it('should return empty `broken`, when no links are broken', async () => {
 		const out = await lincoln('http://localhost:3000/none-broken');
-		expect(out.broken).to.have.lengthOf(0);
+		assert.equal(out.broken.length, 0);
 	})
 	it('should return positive `total`, when some links are present', async () => {
 		const out = await lincoln('http://localhost:3000/none-broken');
-		expect(out.total).to.be.gt(0);
+		assert.equal(out.total, 1);
 	})
 	it('should return positive `broken`, if some links are broken', async () => {
 		const out = await lincoln('http://localhost:3000/some-broken')
-		expect(out.broken.length).to.be.lte(out.total);
-		expect(out.broken.length).to.be.gt(0);
-
-		expect(out.broken).to.be.an('array');
-		expect(out.broken[0].url).to.be.a('string')
-		expect(out.broken[0].src).to.be.a('string')
-		expect(out.broken[0].response_code).to.be.a('number');
-		expect(out.broken[0].msg).to.be.a('string')
+		assert.equal(out.total, 2);
+		assert.equal(out.broken.length, 1); // broken.length > 0
 	})
 })

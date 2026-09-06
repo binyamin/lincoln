@@ -15,8 +15,7 @@
 		"*.ts"
 	],
 	"scripts": {
-		"test": "mocha --recursive test/",
-		"test:unit": "mocha --recursive test/ -f=#unit",
+		"test": "node --test",
 		"types": "npx typescript index.js --declaration --allowJs --emitDeclarationOnly"
 	},
 	"keywords": [
@@ -29,8 +28,6 @@
 	"author": "Binyamin Aron Green (https://binyam.in/)",
 	"license": "MIT",
 	"devDependencies": {
-		"chai": "^6.2.2",
-		"mocha": "^12.0.0",
 		"serve-handler": "^6.1.7"
 	},
 	"dependencies": {
