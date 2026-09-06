@@ -21,6 +21,7 @@ and this project tries to adhere to
 
 - Updated dependencies
 - BREAKING: drop support for node versions under v22
+- BREAKING: move from CJS to ESM
 
 ## [1.1.0] - 2020-10-12
 

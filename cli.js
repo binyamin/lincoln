@@ -1,9 +1,12 @@
 #! /usr/bin/env node
-const argv = require('minimist')(process.argv.slice(2));
-const ora = require('ora');
 
-const lib = require('./lib');
-const pkg = require('./package.json');
+import minimist from 'minimist';
+import ora from 'ora';
+
+import * as lib from './lib/index.js';
+import pkg from './package.json' with { type: 'json' };
+
+const argv = minimist(process.argv.slice(2));
 
 async function run(srcUrl, limit) {
 	try {

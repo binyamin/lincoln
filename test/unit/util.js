@@ -1,6 +1,5 @@
-const { expect } = require('chai');
-
-const util = require('../../lib/util');
+import { expect } from 'chai';
+import * as util from '../../lib/util.js';
 
 describe('Utility functions #unit', () => {
 	it('prefixUrl() - should prefix url if necessary', () => {

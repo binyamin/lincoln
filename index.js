@@ -1,4 +1,4 @@
-const lib = require('./lib');
+import * as lib from './lib/index.js';
 
 /**
  * @typedef BrokenLink
@@ -33,4 +33,4 @@ async function lincoln(srcUrl) {
 	return { total, broken }
 }
 
-module.exports = lincoln;
+export default lincoln

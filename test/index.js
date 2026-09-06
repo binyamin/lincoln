@@ -1,9 +1,8 @@
-const assert = require('node:assert');
-const { expect } = require('chai');
+import assert from 'node:assert';
+import { expect } from 'chai';
+import lincoln from '../index.js';
+import serve from '../lib/serve.js';
 
-const lincoln = require('..');
-
-const serve = require('../lib/serve');
 const srvr = new serve('./test/fixtures');
 
 describe('lincoln - test for broken links', () => {
