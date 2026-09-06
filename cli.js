@@ -1,7 +1,4 @@
 #! /usr/bin/env node
-
-const url = require('node:url');
-
 const argv = require('minimist')(process.argv.slice(2));
 const ora = require('ora');
 
@@ -19,7 +16,7 @@ async function run(srcUrl, limit) {
 
 		for (const p of pages) {
 			// Set spinner
-			spinner.text = url.parse(p).pathname;
+			spinner.text = new URL(p).pathname;
 			spinner.color = ['cyan', 'magenta', 'green', 'yellow'][pages.findIndex(i => i === p) % 4];
 
 			const pageData = await lib.checkPageLinks(p);
